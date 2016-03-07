@@ -1,0 +1,502 @@
+{
+  "id" : null,
+  "name" : "Nik_GrayLog_PAN_Dashboards",
+  "description" : "Additional Dashboards for Reighnman's Palo Alto Networks Content Pack:\r\nhttps://marketplace.graylog.org/addons/cc7de2f6-e0d0-4446-ac2b-309426871055",
+  "category" : "Firewalls, PAN-OS",
+  "inputs" : [ ],
+  "streams" : [ ],
+  "outputs" : [ ],
+  "dashboards" : [ {
+    "title" : "PAN Threat Summary (7d)",
+    "description" : "PAN Threat Summary",
+    "dashboard_widgets" : [ {
+      "description" : "Total Threats",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:informational OR Severity:low OR Severity:medium OR Severity:high OR Severity:critical) AND NOT Subtype:file"
+      },
+      "col" : 1,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Total Threats",
+      "type" : "SEARCH_RESULT_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "lower_is_better" : true,
+        "trend" : true,
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:informational OR Severity:low OR Severity:medium OR Severity:high OR Severity:critical) AND NOT Subtype:file"
+      },
+      "col" : 4,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "By ThreatID",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "ThreatID",
+        "show_pie_chart" : true,
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:informational OR Severity:low OR Severity:medium OR Severity:high OR Severity:critical) AND NOT Subtype:file",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "By Severity",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "Severity",
+        "show_pie_chart" : true,
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:informational OR Severity:low OR Severity:medium OR Severity:high OR Severity:critical) AND NOT Subtype:file",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "By SourceIP",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "SourceIP",
+        "show_pie_chart" : true,
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:informational OR Severity:low OR Severity:medium OR Severity:high OR Severity:critical) AND NOT Subtype:file",
+        "show_data_table" : true
+      },
+      "col" : 3,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "By DestinationIP",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "DestinationIP",
+        "show_pie_chart" : true,
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:informational OR Severity:low OR Severity:medium OR Severity:high OR Severity:critical) AND NOT Subtype:file",
+        "show_data_table" : true
+      },
+      "col" : 4,
+      "row" : 3,
+      "cache_time" : 10
+    }, {
+      "description" : "Critical and High Threats",
+      "type" : "SEARCH_RESULT_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "lower_is_better" : true,
+        "trend" : true,
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:high OR Severity:critical) AND NOT Subtype:file"
+      },
+      "col" : 4,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Critical and High Threats",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:high OR Severity:critical) AND NOT Subtype:file"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    } ]
+  }, {
+    "title" : "PAN GlobalProtect Portal Login Summary (30d)",
+    "description" : "PAN GlobalProtect Portal Login Summary",
+    "dashboard_widgets" : [ {
+      "description" : "Successful Logins",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "interval" : "hour",
+        "query" : "Type:SYSTEM AND Event:auth-success"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Failed Logins",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "interval" : "hour",
+        "query" : "Type:SYSTEM AND Event:auth-fail"
+      },
+      "col" : 2,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Successful Logins by Desc.",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "field" : "Description",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-success",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Failed Logins by Desc.",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "field" : "Description",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-fail",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Failed by Device",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "field" : "SerialNumber",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-fail",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 5,
+      "cache_time" : 10
+    }, {
+      "description" : "Succesful by Device",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "field" : "SerialNumber",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-success",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 5,
+      "cache_time" : 10
+    } ]
+  }, {
+    "title" : "PAN GlobalProtect Portal Login Summary (upd) (7d)",
+    "description" : "PAN GlobalProtect Portal Login Summary",
+    "dashboard_widgets" : [ {
+      "description" : "Successful Logins",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:SYSTEM AND Event:auth-success"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 60
+    }, {
+      "description" : "Successful Logins By Device",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "SerialNumber",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-success",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 5,
+      "cache_time" : 60
+    }, {
+      "description" : "Failed Logins By Device",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "SerialNumber",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-fail",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 5,
+      "cache_time" : 60
+    }, {
+      "description" : "Successful Logins by Event",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "NOTCOMMA",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-success",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Failed Logins by Event",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "field" : "NOTCOMMA",
+        "show_pie_chart" : true,
+        "query" : "Type:SYSTEM AND Event:auth-fail",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Failed Logins",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:SYSTEM AND Event:auth-fail"
+      },
+      "col" : 2,
+      "row" : 1,
+      "cache_time" : 60
+    } ]
+  }, {
+    "title" : "PAN - System Overview (7d)",
+    "description" : "PAN System Overview",
+    "dashboard_widgets" : [ {
+      "description" : "Traffic",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:TRAFFIC"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Threats that may need attention",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:high OR Severity:critical) AND NOT (Subtype:file or Subtype:vulnerability)"
+      },
+      "col" : 1,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "CONFIG Changes (commit, save, etc)",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:CONFIG"
+      },
+      "col" : 1,
+      "row" : 5,
+      "cache_time" : 10
+    }, {
+      "description" : "FW Logins",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:SYSTEM AND Event:auth-success"
+      },
+      "col" : 1,
+      "row" : 4,
+      "cache_time" : 10
+    }, {
+      "description" : "High and Critical Threats that may be only vulerabilities, not activity",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 604800
+        },
+        "interval" : "hour",
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:high OR Severity:critical) AND NOT Subtype:file"
+      },
+      "col" : 1,
+      "row" : 3,
+      "cache_time" : 10
+    } ]
+  }, {
+    "title" : "PAN Configuration Changes (30d)",
+    "description" : "PAN Configuration Changes",
+    "dashboard_widgets" : [ {
+      "description" : "Config Changes Histogram",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "interval" : "hour",
+        "query" : "Type:CONFIG"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "CMD Pie Chart",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "field" : "Cmd",
+        "show_pie_chart" : true,
+        "query" : "Type:CONFIG",
+        "show_data_table" : true
+      },
+      "col" : 2,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Client Pie Chart",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "field" : "Host",
+        "show_pie_chart" : true,
+        "query" : "Type:CONFIG",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 2,
+      "cache_time" : 10
+    }, {
+      "description" : "Path Pie Chart",
+      "type" : "QUICKVALUES",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "field" : "Path",
+        "show_pie_chart" : true,
+        "query" : "Type:CONFIG",
+        "show_data_table" : true
+      },
+      "col" : 1,
+      "row" : 5,
+      "cache_time" : 10
+    } ]
+  }, {
+    "title" : "PAN Threats that may need real attention (30d)",
+    "description" : "not just listed as a vulnerability",
+    "dashboard_widgets" : [ {
+      "description" : "Threats that are not just a vulnerability (30d)",
+      "type" : "SEARCH_RESULT_COUNT",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "lower_is_better" : true,
+        "trend" : true,
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:high OR Severity:critical) AND NOT (Subtype:file or Subtype:vulnerability)"
+      },
+      "col" : 3,
+      "row" : 1,
+      "cache_time" : 10
+    }, {
+      "description" : "Histogram",
+      "type" : "SEARCH_RESULT_CHART",
+      "configuration" : {
+        "timerange" : {
+          "type" : "relative",
+          "range" : 2592000
+        },
+        "interval" : "hour",
+        "query" : "Type:THREAT AND NOT ThreatID:\\(9999\\) AND (Severity:high OR Severity:critical) AND NOT (Subtype:file or Subtype:vulnerability)"
+      },
+      "col" : 1,
+      "row" : 1,
+      "cache_time" : 10
+    } ]
+  } ],
+  "grok_patterns" : [ ]
+}
